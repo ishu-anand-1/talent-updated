@@ -1,0 +1,7 @@
+@import "tailwindcss";
+
+/* Tell Tailwind where your React files are */
+@source "../**/*.{js,ts,jsx,tsx}";
+
+/* Optional animations library */
+@import "tw-animate-css";

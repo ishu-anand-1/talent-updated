@@ -1,0 +1,40 @@
+import React from "react";
+import * as ScrollAreaPrimitive from "@radix-ui/react-scroll-area";
+import { cn } from "../../utils/cn";
+
+export function ScrollArea({ className, children, ...props }) {
+  return (
+    <ScrollAreaPrimitive.Root
+      className={cn("relative", className)}
+      {...props}
+    >
+      <ScrollAreaPrimitive.Viewport className="h-full w-full rounded-[inherit]">
+        {children}
+      </ScrollAreaPrimitive.Viewport>
+
+      <ScrollBar />
+      <ScrollAreaPrimitive.Corner />
+    </ScrollAreaPrimitive.Root>
+  );
+}
+
+export function ScrollBar({
+  className,
+  orientation = "vertical",
+  ...props
+}) {
+  return (
+    <ScrollAreaPrimitive.ScrollAreaScrollbar
+      orientation={orientation}
+      className={cn(
+        "flex touch-none select-none transition-colors",
+        orientation === "vertical" && "h-full w-2.5 border-l border-transparent",
+        orientation === "horizontal" && "h-2.5 flex-col border-t border-transparent",
+        className
+      )}
+      {...props}
+    >
+      <ScrollAreaPrimitive.ScrollAreaThumb className="relative flex-1 rounded-full bg-gray-300" />
+    </ScrollAreaPrimitive.ScrollAreaScrollbar>
+  );
+}
